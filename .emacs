@@ -117,3 +117,16 @@
   \(fn arg char)"
   'interactive)
 (global-set-key "\M-z" 'zap-up-to-char)
+
+;;Package
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
+
+;;Javascript refactoring tools
+(require 'js2-refactor)
+(js2r-add-keybindings-with-prefix "C-c C-m")
