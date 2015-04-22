@@ -3,8 +3,6 @@ syntax on
 filetype plugin indent on
 
 syntax enable
-set background=dark
-colorscheme solarized
 au GUIEnter * simalt ~x
 
 :set guioptions-=m "remove menu bar
@@ -13,7 +11,12 @@ au GUIEnter * simalt ~x
 :set guioptions-=L "remove left-hand scroll bar
 
 "NERD TREE CONFIG
-autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "right"
+
+"GUI only colour scheme
+if has('gui_running')
+	set background=dark
+	colorscheme solarized
+endif
