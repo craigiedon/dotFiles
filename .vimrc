@@ -28,7 +28,7 @@ endif
 "Window navigation shortcuts
 
 noremap <C-Down> <C-W>J
-noremap <C-Left> <C-W>>H
+noremap <C-Left> <C-W>H
 noremap <C-Up> <C-W>K
 noremap <C-Right> <C-W>L
 
