@@ -26,12 +26,31 @@ if has('gui_running')
 endif
 
 "Window navigation shortcuts
-map <C-J> <C-W>j
-map <C-H> <C-W>h
-map <C-K> <C-W>k
-map <C-L> <C-W>l
 
+noremap <C-Down> <C-W>J
+noremap <C-Left> <C-W>>H
+noremap <C-Up> <C-W>K
+noremap <C-Right> <C-W>L
+
+noremap <C-J> <C-W>j
+noremap <C-H> <C-W>h
+noremap <C-K> <C-W>k
+noremap <C-L> <C-W>l
+
+
+"Workaround for SQL Omni completion messing with my Ctrl-C escape map
+let g:ftplugin_sql_omni_key = '<C-X>'
+
+"Auto reload vimrc on save
 augroup reload_vimrc " {
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+
+"Tab rules
+set shiftwidth=4
+set tabstop=4
+
+"Backspace config
+set backspace=indent,eol,start
+:imap <C-BS> <C-W>
