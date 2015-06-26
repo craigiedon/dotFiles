@@ -5,6 +5,8 @@ filetype plugin indent on
 syntax enable
 set number
 
+let mapleader=","
+
 au GUIEnter * simalt ~x
 
 :set guioptions-=m "remove menu bar
@@ -54,3 +56,28 @@ set tabstop=4
 "Backspace config
 set backspace=indent,eol,start
 :imap <C-BS> <C-W>
+
+"Presentation Mode
+function! PresentationModeOn()
+    set guifont=Lucida_Console:h20:cANSI        " for ubuntu
+endfunction
+
+function! PresentationModeOff()
+    set guifont=Lucida_Console:h9:cANSI        " for ubuntu
+endfunction
+
+function! TogglePresentationMode()
+  if !exists('w:present')
+    let w:present=0
+  endif
+
+  if w:present==0
+    call PresentationModeOn()
+    let w:present=1
+  else
+    call PresentationModeOff()
+    let w:present=0
+  endif
+endfunction
+
+map <leader>z :call TogglePresentationMode()<CR>
