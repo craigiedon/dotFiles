@@ -7,6 +7,8 @@ syntax enable
 set number
 let mapleader = ","
 
+let mapleader=","
+
 au GUIEnter * simalt ~x
 
 :set guioptions-=m "remove menu bar
@@ -66,3 +68,28 @@ nnoremap <leader>m :make<ENTER>
 nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:?\ ,eol:¬
+
+"Presentation Mode
+function! PresentationModeOn()
+    set guifont=Lucida_Console:h20:cANSI        " for ubuntu
+endfunction
+
+function! PresentationModeOff()
+    set guifont=Lucida_Console:h9:cANSI        " for ubuntu
+endfunction
+
+function! TogglePresentationMode()
+  if !exists('w:present')
+    let w:present=0
+  endif
+
+  if w:present==0
+    call PresentationModeOn()
+    let w:present=1
+  else
+    call PresentationModeOff()
+    let w:present=0
+  endif
+endfunction
+
+map <leader>z :call TogglePresentationMode()<CR>
