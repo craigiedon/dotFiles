@@ -1,9 +1,11 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+Helptags
 
 syntax enable
 set number
+let mapleader = ","
 
 au GUIEnter * simalt ~x
 
@@ -47,10 +49,20 @@ augroup reload_vimrc " {
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
-"Tab rules
-set shiftwidth=4
-set tabstop=4
-
 "Backspace config
 set backspace=indent,eol,start
 :imap <C-BS> <C-W>
+
+"Wrapping options for markdown
+augroup markdownWrapping
+	autocmd FileType mkd setlocal tw=80
+	autocmd FileType mkd setlocal formatoptions+=t
+augroup END
+
+"Shortcut for make command
+nnoremap <leader>m :make<ENTER>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:?\ ,eol:¬
