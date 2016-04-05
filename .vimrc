@@ -7,25 +7,26 @@ set number
 
 let mapleader=","
 
-au GUIEnter * simalt ~x
 
 :set guioptions-=m "remove menu bar
 :set guioptions-=T "remove toolbar
 :set guioptions-=r "remove right-hand scroll bar
 :set guioptions-=L "remove left-hand scroll bar
 
-:set guifont=Lucida_Console:h9:cANSI
+:set guifont=Monospace\ 10
 
 "NERD TREE CONFIG
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "right"
 
-"GUI only colour scheme
+"GUI only colour scheme and maximize
 if has('gui_running')
 	set background=dark
 	colorscheme solarized
 endif
+
+au GUIEnter * simalt ~x
 
 "Window navigation shortcuts
 
@@ -57,13 +58,14 @@ set tabstop=4
 set backspace=indent,eol,start
 :imap <C-BS> <C-W>
 
+
 "Presentation Mode
 function! PresentationModeOn()
-    set guifont=Lucida_Console:h20:cANSI        " for ubuntu
+    set guifont=Monospace\ 20        " for ubuntu
 endfunction
 
 function! PresentationModeOff()
-    set guifont=Lucida_Console:h9:cANSI        " for ubuntu
+    set guifont=Monospace\ 10        " for ubuntu
 endfunction
 
 function! TogglePresentationMode()
@@ -81,3 +83,12 @@ function! TogglePresentationMode()
 endfunction
 
 map <leader>z :call TogglePresentationMode()<CR>
+
+"Disable markdown folding
+let g:vim_markdown_folding_disabled=1
+
+"Autowrap for markdown
+autocmd FileType mkd setlocal tw=90 
+
+"Quick clear of search terms
+nnoremap <leader>h :noh<cr>
