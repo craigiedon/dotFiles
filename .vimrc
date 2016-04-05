@@ -3,11 +3,17 @@ syntax on
 filetype plugin indent on
 Helptags
 
-syntax enable
+syntax on
 set number
 let mapleader = ","
 
-let mapleader=","
+set shiftwidth=4
+set shiftround
+set showmatch
+set smartcase
+set smarttab
+set incsearch
+set hlsearch
 
 au GUIEnter * simalt ~x
 
@@ -61,6 +67,8 @@ augroup markdownWrapping
 	autocmd FileType mkd setlocal formatoptions+=t
 augroup END
 
+let g:vim_markdown_folding_disabled=1
+
 "Shortcut for make command
 nnoremap <leader>m :make<ENTER>
 
@@ -69,27 +77,16 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:?\ ,eol:¬
 
-"Presentation Mode
-function! PresentationModeOn()
-    set guifont=Lucida_Console:h20:cANSI        " for ubuntu
-endfunction
+" CDC = Change to Directory of Current file
+command! CDC cd %:p:h
 
-function! PresentationModeOff()
-    set guifont=Lucida_Console:h9:cANSI        " for ubuntu
-endfunction
+"Latex options
+let g:tex_flavor = "latex"
+autocmd FileType tex setlocal tw=80
+autocmd FileType tex setlocal formatoptions+=t
 
-function! TogglePresentationMode()
-  if !exists('w:present')
-    let w:present=0
-  endif
-
-  if w:present==0
-    call PresentationModeOn()
-    let w:present=1
-  else
-    call PresentationModeOff()
-    let w:present=0
-  endif
-endfunction
-
-map <leader>z :call TogglePresentationMode()<CR>
+"Rainbow parentheses always on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
