@@ -71,6 +71,8 @@ let g:vim_markdown_folding_disabled=1
 
 "Shortcut for make command
 nnoremap <leader>m :make<ENTER>
+" Shortcut to toggle search highlight
+nnoremap <F12> :noh<CR>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -90,3 +92,8 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+"Python options
+let g:pymode_folding = 0
+let g:pymode_lint_ignore = "E501"
+let g:pymode_rope_complete_on_dot = 0
